@@ -3,7 +3,7 @@ import { createMuiTheme } from '@material-ui/core';
 export const muiTheme = createMuiTheme({
   palette: {
     text: {
-      primary: '#212121',
+      primary: '#5F6971',
       secondary: '#757575'
     },
     primary: {
@@ -12,6 +12,17 @@ export const muiTheme = createMuiTheme({
       dark: '#1976D2',
     },
   },
+  // typography: {
+  //   "fontFamily": "Oswald",
+  //   "lineHeight": 1.2,
+  //   "letterSpacing": 0.32,
+  //   useNextVariants: true,
+  //   suppressDeprecationWarnings: true,
+  // // h1: {
+  // //     "fontFamily": "Open Sans",
+  // //     "fontWeight":400,
+  // //   },
+  // },
 });
 
 export const theme = {

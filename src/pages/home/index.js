@@ -15,6 +15,7 @@ import Recruiters from '../../components/Recruiter';
 import Snackbar from '../../components/Snackbar';
 
 import professionals from '../../images/2753.jpg'
+import logo from '../../images/bliggiTmpLogo.png'
 
 function Copyright() {
   return (
@@ -37,17 +38,18 @@ const useStyles = makeStyles((theme) => ({
     background: '#fff'
   },
   main: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
   grid: {
-    marginTop: theme.spacing(6)
+    marginTop: theme.spacing(4)
   },
   button: {
     fontWeight: 'bold',
+    minWidth: '20vh',
   },
   footer: {
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(2, 2),
     marginTop: 'auto',
     color: '#fff',
     backgroundColor: theme.palette.primary.dark,
@@ -79,13 +81,16 @@ export default function App() {
     <div className={classes.root}>
       <CssBaseline />
       <Container component="main" className={classes.main} maxWidth="sm">
-        <Typography variant="h2" component="h1" align="center" gutterBottom>
-          Bliggi
-        </Typography>
+        {/* <Typography variant="h1" component="h1" align="center" gutterBottom>
+          bliggi
+        </Typography> */}
+        <Grid container justify="center" style={{ marginTop: 20}}>
+          <img src={logo} alt="bliggi" />
+        </Grid>
         <Paper style={{ padding: 30 }} variant="outlined">
-          <Typography variant="h5" component="h2" align="center" gutterBottom>
+          {/* <Typography variant="h5" component="h2" align="center" gutterBottom>
             Because no virus will take you down.
-          </Typography>
+          </Typography> */}
           <Typography  variant="h1" component="h1" align="center">
             2340
           </Typography>

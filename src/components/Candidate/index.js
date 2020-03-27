@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -9,8 +10,17 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { useForm } from 'react-hook-form';
 
+import { countries } from '../countries';
+import { professions } from '../professions';
+
 export default function Cadidate({ open, handleClose, handleCandidate }) {
   const { register, handleSubmit } = useForm()
+
+  function countryToFlag(isoCode) {
+  return typeof String.fromCodePoint !== 'undefined'
+    ? isoCode.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397))
+    : isoCode;
+}
 
   const onSubmit = formData => {
     handleCandidate(formData);
@@ -23,7 +33,7 @@ export default function Cadidate({ open, handleClose, handleCandidate }) {
         <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <DialogContentText>
-            If you lost your job during the pandemic season of covid19, don't let the virus take you down. Fill the form below and we will help you be back to the game. And never forget, <strong>Everything is gonna be alright</strong>!
+            If you lost your job during the Covid-19 Pandemic, don't remain a victim of the virus. Fill out the form below and we will help you find employment. And never forget. <strong>Everything is gonna be alright</strong>!
           </DialogContentText>
             <TextField
               variant="outlined"
@@ -35,7 +45,33 @@ export default function Cadidate({ open, handleClose, handleCandidate }) {
               fullWidth
               inputRef={register}
             />
-            <TextField
+            <Autocomplete
+              id="profession-select"
+              options={professions}
+              autoHighlight
+              getOptionLabel={option => option.label}
+              renderOption={option => (
+                <React.Fragment>
+                  {option.label}
+                </React.Fragment>
+              )}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  margin="dense"
+                  id="position"
+                  label="Position"
+                  fullWidth
+                  inputRef={register}
+                  inputProps={{
+                    ...params.inputProps,
+                    autoComplete: 'new-password', // disable autocomplete and autofill
+                  }}
+                />
+              )}
+            />
+            {/* <TextField
               variant="outlined"
               margin="dense"
               id="position"
@@ -44,7 +80,7 @@ export default function Cadidate({ open, handleClose, handleCandidate }) {
               type="text"
               fullWidth
               inputRef={register}
-            />
+            /> */}
             <TextField
               variant="outlined"
               margin="dense"
@@ -55,7 +91,33 @@ export default function Cadidate({ open, handleClose, handleCandidate }) {
               fullWidth
               inputRef={register}
             />
-            <TextField
+            <Autocomplete
+              id="country-select"
+              options={countries}
+              autoHighlight
+              getOptionLabel={option => option.label}
+              renderOption={option => (
+                <React.Fragment>
+                  {option.label} ({option.code})
+                </React.Fragment>
+              )}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  margin="dense"
+                  id="country"
+                  label="Country"
+                  fullWidth
+                  inputRef={register}
+                  inputProps={{
+                    ...params.inputProps,
+                    autoComplete: 'new-password', // disable autocomplete and autofill
+                  }}
+                />
+              )}
+            />
+            {/* <TextField
               variant="outlined"
               margin="dense"
               id="country"
@@ -64,7 +126,7 @@ export default function Cadidate({ open, handleClose, handleCandidate }) {
               type="text"
               fullWidth
               inputRef={register}
-            />
+            /> */}
             <TextField
               variant="outlined"
               margin="dense"
@@ -121,7 +183,7 @@ export default function Cadidate({ open, handleClose, handleCandidate }) {
             Cancel
           </Button>
           <Button type="submit" color="primary">
-            Subscribe
+            Submit
           </Button>
         </DialogActions>
           </form>
@@ -129,3 +191,4 @@ export default function Cadidate({ open, handleClose, handleCandidate }) {
     </div>
   );
 }
+
