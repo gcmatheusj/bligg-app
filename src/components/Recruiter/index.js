@@ -11,7 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { useForm } from 'react-hook-form';
 import { countries } from '../countries';
 
-export default function Cadidate({ open, handleClose, handleRecruiter }) {
+export default function Recruiter({ open, handleClose, handleRecruiter }) {
   const { register, handleSubmit } = useForm()
 
   const onSubmit = formData => {
@@ -73,16 +73,6 @@ export default function Cadidate({ open, handleClose, handleRecruiter }) {
                 />
               )}
             />
-          {/* <TextField
-            variant="outlined"
-            margin="dense"
-            id="country"
-            label="Country"
-            name="country"
-            type="text"
-            inputRef={register}
-            fullWidth
-          /> */}
           <TextField
             variant="outlined"
             margin="dense"
@@ -128,7 +118,7 @@ export default function Cadidate({ open, handleClose, handleRecruiter }) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button type="submit" color="primary">
             Submit
           </Button>
         </DialogActions>

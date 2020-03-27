@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form';
 import { countries } from '../countries';
 import { professions } from '../professions';
 
-export default function Cadidate({ open, handleClose, handleCandidate }) {
+export default function Candidate({ open, handleClose, handleCandidate }) {
   const { register, handleSubmit } = useForm()
 
   function countryToFlag(isoCode) {
@@ -71,16 +71,6 @@ export default function Cadidate({ open, handleClose, handleCandidate }) {
                 />
               )}
             />
-            {/* <TextField
-              variant="outlined"
-              margin="dense"
-              id="position"
-              label="Position"
-              name="position"
-              type="text"
-              fullWidth
-              inputRef={register}
-            /> */}
             <TextField
               variant="outlined"
               margin="dense"
@@ -117,16 +107,6 @@ export default function Cadidate({ open, handleClose, handleCandidate }) {
                 />
               )}
             />
-            {/* <TextField
-              variant="outlined"
-              margin="dense"
-              id="country"
-              label="Country"
-              name="country"
-              type="text"
-              fullWidth
-              inputRef={register}
-            /> */}
             <TextField
               variant="outlined"
               margin="dense"
