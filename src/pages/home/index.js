@@ -12,6 +12,7 @@ import api from '../../services/api';
 
 import Candidate from '../../components/Candidate';
 import Recruiters from '../../components/Recruiter';
+import Login from '../../components/Login';
 import Snackbar from '../../components/Snackbar';
 
 import professionals from '../../images/2753.jpg'
@@ -31,11 +32,14 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh',
-    background: '#fff'
+  // root: {
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   minHeight: '100vh',
+  //   background: '#fff'
+  // },
+    root: {
+    flexGrow: 1,
   },
   main: {
     marginTop: theme.spacing(2),
@@ -61,6 +65,7 @@ export default function App() {
   const classes = useStyles();
   const [openCandidate, setOpenCandidate] = useState(false);
   const [openRecruiters, setOpenRecruiters] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
   const [openSnack, setOpenSnack] = useState(false);
   const [countCandidate, setCountCandidate] = useState(0);
 
@@ -78,6 +83,16 @@ export default function App() {
     setOpenCandidate(false)
   };
 
+    const onSubmitLogin = async formData => {
+      if (formData.profile === 'Candidate') {
+          await api.post('auth/user', formData);
+      } else {
+        await api.post('auth/recruiter', formData);
+      }
+    setOpenSnack(true)
+    setOpenLogin(false)
+  };
+
   const onSubmitRecruiter = async formData => {
     await api.post('recruiter', formData);
 
@@ -89,8 +104,24 @@ export default function App() {
     <div className={classes.root}>
       <CssBaseline />
       <Container component="main" className={classes.main} maxWidth="sm">
-        <Grid container justify="center" style={{ marginTop: 20}}>
-          <img src={logo} alt="bliggi" />
+          <Grid container
+              style={{ marginTop: 20}}
+              justify="center"
+              alignItems="space-around"
+          >
+          <Grid item xs={8}style={{ marginLeft: 80}} >
+            <img src={logo} alt="bliggi" />
+          </Grid>
+          <Grid item xs={2}>
+            <Button 
+                className={classes.button} 
+                variant="outlined" 
+                color="primary"
+                onClick={() => setOpenLogin(true)}
+              >
+                SIGN IN
+              </Button>
+            </Grid>
         </Grid>
         <Paper style={{ padding: 30 }} variant="outlined">
           <Typography  variant="h1" component="h1" align="center">
@@ -120,6 +151,11 @@ export default function App() {
             </Button>
           </Grid>
         </Paper>
+        <Login 
+          open={openLogin}  
+          handleClose={() => setOpenLogin(false)}
+          handleLogin={onSubmitLogin} 
+        />
         <Candidate 
           open={openCandidate}  
           handleClose={() => setOpenCandidate(false)}
