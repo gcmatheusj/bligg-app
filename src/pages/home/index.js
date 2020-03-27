@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   // },
     root: {
     flexGrow: 1,
+    background: '#fff'
   },
   main: {
     marginTop: theme.spacing(2),
