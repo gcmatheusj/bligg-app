@@ -16,11 +16,6 @@ import { professions } from '../professions';
 export default function Candidate({ open, handleClose, handleCandidate }) {
   const { register, handleSubmit } = useForm()
 
-  function countryToFlag(isoCode) {
-  return typeof String.fromCodePoint !== 'undefined'
-    ? isoCode.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397))
-    : isoCode;
-}
 
   const onSubmit = formData => {
     handleCandidate(formData);
@@ -151,7 +146,7 @@ export default function Candidate({ open, handleClose, handleCandidate }) {
               variant="outlined"
               margin="dense"
               id="password"
-              label="Password"
+              label="Register a Password"
               name="password"
               type="password"
               fullWidth

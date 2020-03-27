@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -62,9 +62,17 @@ export default function App() {
   const [openCandidate, setOpenCandidate] = useState(false);
   const [openRecruiters, setOpenRecruiters] = useState(false);
   const [openSnack, setOpenSnack] = useState(false);
+  const [countCandidate, setCountCandidate] = useState(0);
+
+  useEffect(() => {
+    async function getCandidateList() {
+       setCountCandidate(await api.get('users'));
+    }
+    getCandidateList();
+  }, []);
 
   const onSubmitCandidate = async formData => {
-    await api.post('user', formData);
+    await api.post('users', formData);
 
     setOpenSnack(true)
     setOpenCandidate(false)
@@ -86,7 +94,7 @@ export default function App() {
         </Grid>
         <Paper style={{ padding: 30 }} variant="outlined">
           <Typography  variant="h1" component="h1" align="center">
-            2340
+            {countCandidate}
           </Typography>
           <Typography style={{ marginTop: '0.35em', fontSize: 18 }} variant="h5" component="h2" align="center">
             People lost their jobs because COVID19 pandemy 
@@ -124,7 +132,7 @@ export default function App() {
         />
         <Snackbar open={openSnack} handleClose={() => setOpenSnack(false)} message="Registered successfully" />
         <Grid container justify="center" style={{ marginTop: 20}}>
-          <img src={professionals} width={350} alt="professionals" />
+          <img src={professionals} width={300} alt="professionals" />
         </Grid>
       </Container>
       <footer className={classes.footer}>

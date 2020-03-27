@@ -107,7 +107,7 @@ export default function Recruiter({ open, handleClose, handleRecruiter }) {
             variant="outlined"
             margin="dense"
             id="password"
-            label="Password"
+            label="Register a Password"
             name="password"
             type="password"
             inputRef={register}
